@@ -1,0 +1,6 @@
+[submodule "socialmedia-application-frontend"]
+	path = socialmedia-application-frontend
+	url = git@github.com:mikorozek/socialmedia-application-frontend.git
+[submodule "socialmedia-application-backend"]
+	path = socialmedia-application-backend
+	url = git@github.com:mikorozek/socialmedia-application-backend.git

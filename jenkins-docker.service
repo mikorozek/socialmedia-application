@@ -1,0 +1,20 @@
+Description=Jenkins Docker Container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f jenkins
+ExecStartPre=/usr/bin/docker build -t my-jenkins /home/azureuser/jenkins-setup
+ExecStart=/usr/bin/docker run \
+    --name jenkins \
+    -p 8080:8080 \
+    -p 50000:50000 \
+    -v jenkins_home:/var/jenkins_home \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    --group-add 999 \
+    my-jenkins
+ExecStop=/usr/bin/docker stop jenkins
+
+[Install]
+WantedBy=multi-user.target

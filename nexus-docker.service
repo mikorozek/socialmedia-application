@@ -1,0 +1,17 @@
+[Unit]
+Description=Nexus Repository Manager Container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker rm -f nexus
+ExecStart=/usr/bin/docker run \
+    --name nexus \
+    -p 8081:8081 \
+    -v nexus-data:/nexus-data \
+    sonatype/nexus3
+ExecStop=/usr/bin/docker stop nexus
+
+[Install]
+WantedBy=multi-user.target

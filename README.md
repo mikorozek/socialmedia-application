@@ -33,7 +33,17 @@ FRONTEND_HOST=frontend
 NODE_ENV=production
 ```
 
-Replace .env variables with your desired values. BACKEND_HOST and FRONTEND_HOST are services name in docker-compose.yml file.
+Replace .env variables with your desired values. BACKEND_HOST and FRONTEND_HOST are backend and frontend service names in docker-compose.yml file.
+
+Create a second `.env` file in the socialmedia-application-frontend directory with the following variables:
+```env_example
+NEXTAUTH_SECRET=<secret>
+NEXTAUTH_URL=http://localhost:<frontend_port>/
+NEXT_PUBLIC_BACKEND_HOST=backend
+NEXT_PUBLIC_BACKEND_PORT=<backend_port>
+```
+
+Replace .env variables with your desired values. NEXT_PUBLIC_BACKEND_HOST is a backend service name in docker-compose.yml file.
 
 ### 3. Start the Application
 

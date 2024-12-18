@@ -1,6 +1,7 @@
 # Social Media Application Backend
 
-This repository contains the backend service for a social media application, built with Go and PostgreSQL.
+This repository is a root directory social media application. It has two hooks to submodule repositories - backend built with GoLang and frontend built with Next.js.
+
 
 ## Prerequisites
 

@@ -13,7 +13,7 @@ This repository contains the backend service for a social media application, bui
 ### 1. Clone the Repository
 
 ```bash
-git clone --recursive git@github.com:mikorozek/socialmedia-application-backend.git
+git clone --recursive https://git@github.com:mikorozek/socialmedia-application-backend.git
 cd socialmedia-application-backend
 ```
 
@@ -21,24 +21,26 @@ cd socialmedia-application-backend
 
 Create a `.env` file in the root directory with the following variables:
 
-```env
-POSTGRES_DB=socialmedia_db
-POSTGRES_USER=your_username
-POSTGRES_PASSWORD=your_password
-POSTGRES_PORT=5432
-BACKEND_PORT=8080
-FRONTEND_HOST=localhost
-FRONTEND_PORT=3000
+```env_example
+POSTGRES_DB=<db_name>
+POSTGRES_USER=<user>
+POSTGRES_PASSWORD=<password>
+POSTGRES_PORT=<db_port>
+BACKEND_PORT=<backend_port>
+BACKEND_HOST=backend
+FRONTEND_PORT=<frontend_port>
+FRONTEND_HOST=frontend
+NODE_ENV=production
 ```
 
-Replace `your_username` and `your_password` with your desired database credentials.
+Replace .env variables with your desired values. BACKEND_HOST and FRONTEND_HOST are services name in docker-compose.yml file.
 
 ### 3. Start the Application
 
 Run the following command to start all services:
 
 ```bash
-docker compose up -d
+docker compose up --build
 ```
 
 This will:
@@ -60,7 +62,7 @@ Test the API endpoint:
 curl http://localhost:8080/api/health
 ```
 
-## Project Structure
+## Backend Project Structure
 
 ```
 .
@@ -68,16 +70,7 @@ curl http://localhost:8080/api/health
 ├── internal/              # Private application code
 │   ├── Auth/             # Authentication module
 │   └── shared/           # Shared code between modules
-├── infrastructure/        # Infrastructure configuration
 └── docker/               # Docker-related files
-```
-
-## Development
-
-### Running Tests
-
-```bash
-go test ./... -v
 ```
 
 ### CI/CD
@@ -86,33 +79,6 @@ The project includes:
 - Jenkins CI pipeline for automated testing
 - Jenkins CD pipeline for deployment
 - Infrastructure as Code using Terraform
-
-## API Endpoints
-
-### Authentication
-
-- `POST /api/verify/register` - Register a new user
-- `POST /api/verify/login` - Login user
-
-## Troubleshooting
-
-1. If containers don't start:
-   ```bash
-   docker compose logs
-   ```
-
-2. If database connection fails:
-   - Verify your `.env` configuration
-   - Check if PostgreSQL container is running
-   - Ensure database port is not already in use
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
 
 ## License
 
